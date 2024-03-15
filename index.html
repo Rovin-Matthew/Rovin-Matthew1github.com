@@ -90,10 +90,14 @@
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
   }
+  .mail-gif.clicked {
+    animation: pulse 1s infinite alternate ease-in-out;
+  }
   .icon {
     font-size: 24px;
     color: #333;
   }
+
   /* Animation Keyframes */
   @keyframes pulse {
     0% {
@@ -106,8 +110,35 @@
       transform: scale(1);
     }
   }
-  .pulse-animation {
-    animation: pulse 1s infinite alternate ease-in-out;
+
+  /* Responsive Styles */
+  @media screen and (max-width: 600px) {
+    .invitation-card {
+      padding: 20px;
+    }
+    .invitation-title {
+      font-size: 24px;
+    }
+    h2 {
+      font-size: 20px;
+    }
+    h3 {
+      font-size: 18px;
+    }
+    p {
+      font-size: 16px;
+    }
+    .mail-gif {
+      width: 120px;
+      margin-bottom: 30px;
+    }
+    .icon {
+      font-size: 20px;
+    }
+    .left-image,
+    .right-image {
+      width: 40px;
+    }
   }
 </style>
 </head>
@@ -122,19 +153,20 @@
   <p>You are cordially invited to witness the baptism of</p>
   <h2>Maria Quinnly N. Trajano</h2>
   <h3>Click the invitation to see the details</h3>
-  <img src="invite-invitation.gif" alt="Mail GIF" class="mail-gif" id="invitation-gif">
+  <img src="invite-invitation.gif" alt="Mail GIF" class="mail-gif" onclick="openInvitation(this)" ontouchstart="openInvitation(this)">
 </div>
 
 <script>
-document.getElementById('invitation-gif').onclick = function() {
-  var invitationGif = this;
-  invitationGif.classList.add('pulse-animation');
+function openInvitation(element) {
+  // Add clicked class for animation
+  element.classList.add('clicked');
+  
+  // Open the invitation after 0.5s (sync with animation duration)
   setTimeout(function() {
-    invitationGif.classList.remove('pulse-animation');
     // You can replace this with the URL of your actual invitation
     window.open("You are Invited.png", "_blank");
-  }, 1000);
-};
+  }, 500);
+}
 </script>
 
 </body>
